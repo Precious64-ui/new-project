@@ -1,0 +1,126 @@
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Puts logo on left, links on right */
+  align-items: center;
+  padding: 1rem 2rem;
+  margin: auto;
+ 
+  color: rgb(0, 0, 0);
+}
+
+/* Remove bullets and align links */
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+/* Link styling */
+.nav-links a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar ul li a:hover{
+    color: gold;
+}
+
+.logo{
+    font-size: 30px;
+}
+
+.btn-login, .btn-signup {
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+.btn-login { background-color: #f2f2f2; color: #333; }
+.btn-signup { background-color: #04AA6D; color: white; }
+
+
+
+.hero {
+  height: 100vh;
+  background: 
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+    url("WhatsApp\ Image\ 2026-03-18\ at\ 5.49.49\ PM.jpeg") no-repeat center/cover;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-content {
+  max-width: 600px;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 15px;
+  font-family: serif;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: black;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  background: #d4af37;
+  transform: scale(1.05);
+}
+
+.about{
+    padding: 80px;
+    background: pink;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-family: serif;
+}
+
+.about-text p {
+  line-height: 1.7;
+  color: #555;
+  max-width: 500px;
+}
+
+.about-img{
+    width: 100%;
+    max-width: 400px;
+    border-radius:50px;   
+}
+
+
+
