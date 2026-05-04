@@ -48,7 +48,7 @@
     text-decoration: none;
 }
 .btn-login { background-color: #f2f2f2; color: #333; }
-.btn-signup { background-color: #04AA6D; color: white; }
+.btn-signup { background-color: #ffffff; color: rgb(2, 2, 2); }
 
 
 
@@ -102,17 +102,18 @@
   transform: scale(1.05);
 }
 
-#about {
-  padding: 60px 20px; /* Reduced from 80px to stop it from being too long */
-  background: palevioletred; /* A softer pink looks more professional */
+#about{
+    padding: 80px;
+    background: pink;
+    animation: fadeInLeft 1.5s ease-out;
+    overflow: hidden;
 }
 
 .about-container {
   display: flex;
-  flex-direction: column; /* Stack image and text on mobile */
   align-items: center;
-  text-align: center;
-  gap: 30px;
+  justify-content: space-between;
+  gap: 50px;
 }
 
 .about-text h2 {
@@ -391,53 +392,54 @@ footer small {
   to { transform: scale(1); }
 }
 
+/* --- CORRECTED MOBILE MEDIA QUERY --- */
 @media screen and (max-width: 768px) {
-    /* HIDE LOGIN/SIGNUP ON MOBILE - These should go inside your menu list instead */
-    .btn-login, .btn-signup {
-        display: none !important; 
-    }
-
+    /* 1. Hide the menu by default */
     .nav-links {
         display: none !important; 
         flex-direction: column;
         position: fixed;
-        top: 70px; /* Matches navbar height */
+        top: 60px;
         left: 0;
         width: 100%;
         height: 100vh; 
-        background-color: rgba(0, 0, 0, 0.95); 
+        background-color: rgba(0, 0, 0, 0.9); 
         z-index: 1000;
         padding-top: 50px;
     }
 
+    /* 2. Show the menu ONLY when it has the .active class */
     .nav-links.active {
         display: flex !important;
     }
 
+    /* 3. Style the links centered */
     .nav-links li {
-        margin: 15px 0;
+        margin: 20px 0;
         text-align: center;
-        margin-left: 0;
+        margin-left: 0; /* Resets the desktop margin-left */
     }
 
+    /* 4. Ensure the toggle icon is visible on mobile */
     .menu-toggle {
         display: flex !important;
         flex-direction: column;
         gap: 5px;
+        z-index: 2001 !important;
+        position: relative !important;
+        padding: 10px;
         cursor: pointer;
     }
-    
-    /* Ensure footer links don't overlap */
+
+    /* 5. Tighten footer for mobile */
     footer ul {
-        gap: 10px;
+        gap: 15px;
         flex-direction: row; 
     }
-}
+} /* <--- THIS BRACKET WAS MISSING OR IN THE WRONG PLACE --- */
 
-/* Final cleanup for horizontal behavior */
+/* 6. Prevent horizontal scrolling (This stays outside media query to be safe) */
 body, html {
     overflow-x: hidden !important;
     width: 100%;
-    margin: 0;
-    padding: 0;
 }
