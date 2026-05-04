@@ -15,6 +15,16 @@
   box-sizing: border-box;
 }
 
+.menu-toggle {
+  display: none;
+}
+
+.menu-toggle .bar {
+  width: 25px;
+  height: 3px;
+  background: black;
+}
+
 /* Remove bullets and align links */
 .nav-links {
   display: flex;
@@ -137,12 +147,10 @@
 }
 
 
-/* This makes the items sit side-by-side */
-.product-grid-layout {
+.product-grid {
   display: grid;
-  /* This says: "Make columns at least 250px wide, but fill the rest of the space" */
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px; /* Space between the cards */
+  gap: 20px;
   padding: 20px;
 }
 
@@ -162,14 +170,22 @@
   margin-bottom: 50px;
 }
 
-/* 2. The Individual Product Cards */
 .products-images {
-  background: #1a1a1a; /* Dark charcoal card for a "layer" effect */
-  border: 1px solid #333; /* Subtle border */
+  background: #1a1a1a;
+  border: 1px solid #333;
   padding: 20px;
   text-align: center;
   border-radius: 12px;
   transition: transform 0.3s ease, border-color 0.3s ease;
+  overflow: hidden; /* ADD THIS */
+}
+
+.products-images img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
 }
 
 .products-images:hover {
