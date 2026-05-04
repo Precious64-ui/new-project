@@ -2,12 +2,11 @@
 // ===============================
 // MOBILE NAVBAR TOGGLE
 // ===============================
-const mobileMenu = document.querySelector(".menu-toggle");
-const navLinks = document.querySelector(".nav-links");
+const menu = document.querySelector('#mobile-menu');
+const menuLinks = document.querySelector('.nav-links');
 
-mobileMenu.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-  mobileMenu.classList.toggle("active");
+menu.addEventListener('click', function() {
+    menuLinks.classList.toggle('active');
 });
 
 // Close menu when a link is clicked (better UX on mobile)

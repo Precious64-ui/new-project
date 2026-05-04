@@ -386,10 +386,27 @@ footer ul li a:hover {
     text-align: center;
   }
 
-  .menu-toggle {
+  .btn-ordernow {
+    display: none !important;
+  }
+
+ .menu-toggle {
     display: flex;
     flex-direction: column;
-    cursor: pointer;
+    gap: 4px; /* Space between bars */
+  }
+
+  .menu-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: black; /* Changed to black for visibility on white nav */
+    border-radius: 2px;
+  }
+
+  .nav-links a {
+    color: white;
+    font-size: 1.5rem;
   }
 
   .about-container {
