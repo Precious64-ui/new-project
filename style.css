@@ -308,71 +308,62 @@
     color: var(--coffee-gold);
     transform: translateY(-5px); /* Professional lift effect */
 }
-
+/* --- UPDATED FLEX FOOTER --- */
 footer {
-  background-color: #1a1a1a; /* Dark, elegant background */
-  color: #ffffff;
-  padding: 60px 20px 30px;
-  text-align: center;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 60px 20px 30px;
+    display: flex;
+    flex-direction: column; /* Stacks the rows: links, then social, then copyright */
+    align-items: center;
+    text-align: center;
 }
 
-/* 1. Style the Navigation Links */
+/* Navigation Links Row */
 footer ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-bottom: 40px;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+    display: flex; 
+    justify-content: center;
+    flex-wrap: wrap; /* Wraps links on very narrow screens */
+    gap: 30px;
 }
 
 footer ul li a {
-  color: #bbbbbb;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.3s ease;
+    color: #bbbbbb;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
 }
 
 footer ul li a:hover {
-  color: #d4a373; /* Gold highlight */
+    color: palevioletred;
 }
 
-/* 2. Style the Social Icons */
+/* Social Icons Row */
 footer .social {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    list-style: none;
+    padding: 0;
 }
 
-footer .social li a {
-  color: #ffffff;
-  font-size: 1.5rem; /* Makes icons larger */
-  background: #333;
-  width: 45px;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%; /* Makes them circular */
-  transition: all 0.3s ease;
-}
-
-footer .social li a:hover {
-  background: palevioletred; /* Gold background on hover */
-  transform: translateY(-5px); /* Gentle float effect */
-}
-
-/* 3. Style the Copyright Text */
+/* Copyright Section */
 footer small {
-  display: block;
-  color: #ffffff;
-  font-size: 0.8rem;
-  border-top: 1px solid #333;
-  padding-top: 25px;
-  margin-top: 20px;
-  letter-spacing: 1px;
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    color: #ffffff;
+    font-size: 0.8rem;
+    border-top: 1px solid #333;
+    padding-top: 25px;
+    margin-top: 20px;
+    letter-spacing: 1px;
 }
+
 
 /* Animation for sliding up and fading in */
 @keyframes fadeInUp {
@@ -404,36 +395,54 @@ footer small {
   to { transform: scale(1); }
 }
 
-/* --- COMBINED & FIXED MOBILE MEDIA QUERY --- */
+/* --- CORRECTED MOBILE MEDIA QUERY --- */
 @media screen and (max-width: 768px) {
-    /* Force the menu to hide until active */
+    /* 1. Hide the menu by default */
     .nav-links {
         display: none !important; 
-        flex-direction: column !important;
-        position: fixed !important;
-        top: 60px !important;
-        left: 0 !important;
-        width: 100% !important;
-        background: white !important;
-        z-index: 2000 !important;
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: 100vh; 
+        background-color: rgba(0, 0, 0, 0.9); 
+        z-index: 1000;
+        padding-top: 50px;
     }
 
-    /* Force the menu to show when JS adds the class */
+    /* 2. Show the menu ONLY when it has the .active class */
     .nav-links.active {
         display: flex !important;
     }
 
-    /* Ensure the toggle icon is actually clickable and on top */
-    .menu-toggle {
-        display: flex !important;
-        z-index: 2001 !important;
-        position: relative !important;
-        padding: 10px; /* Makes it easier to hit with a thumb */
+    /* 3. Style the links centered */
+    .nav-links li {
+        margin: 20px 0;
+        text-align: center;
+        margin-left: 0; /* Resets the desktop margin-left */
     }
 
-    /* Prevent that horizontal shaking/scrolling */
-    body, html {
-        overflow-x: hidden !important;
-        width: 100%;
+    /* 4. Ensure the toggle icon is visible on mobile */
+    .menu-toggle {
+        display: flex !important;
+        flex-direction: column;
+        gap: 5px;
+        z-index: 2001 !important;
+        position: relative !important;
+        padding: 10px;
+        cursor: pointer;
     }
+
+    /* 5. Tighten footer for mobile */
+    footer ul {
+        gap: 15px;
+        flex-direction: row; 
+    }
+} /* <--- THIS BRACKET WAS MISSING OR IN THE WRONG PLACE --- */
+
+/* 6. Prevent horizontal scrolling (This stays outside media query to be safe) */
+body, html {
+    overflow-x: hidden !important;
+    width: 100%;
 }
