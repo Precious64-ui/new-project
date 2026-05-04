@@ -404,136 +404,86 @@ footer small {
   to { transform: scale(1); }
 }
 
-/* --- RESPONSIVE MEDIA QUERIES --- */
-
-/* 1. Tablets and Small Laptops (under 1024px) */
-@media screen and (max-width: 1024px) {
-  .hero h1 {
-    font-size: 3rem; /* Shrinking the 4rem title */
-  }
-
-  .about-container {
-    padding: 0 40px;
-    gap: 30px;
-  }
-}
-
-/* 2. Mobile Phones (under 768px) */
+/* --- COMBINED & FIXED MOBILE MEDIA QUERY --- */
 @media screen and (max-width: 768px) {
   
-  /* Navbar: Adjust layout for smaller screens */
+  /* 1. Global Reset for Mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 2. Navbar Fixes */
   .navbar {
     padding: 1rem;
-    flex-direction: column; /* Stacks logo above links if needed */
-    gap: 10px;
+    flex-direction: row; /* Keep logo and hamburger on the same line */
+    justify-content: space-between;
   }
 
+  .nav-right {
+    display: none; /* Hide login/signup on mobile to save space */
+  }
+
+  /* 3. The Hamburger Button Styling */
+  .menu-toggle {
+    display: flex !important; /* Forces it to show */
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .bar {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    display: block;
+  }
+
+  /* 4. The Hidden Menu (The Slide Down) */
   .nav-links {
-    margin-top: 10px;
-    padding: 0;
-    gap: 15px;
-  }
-
-  .nav-links li {
-    margin-left: 0; /* Resetting the left margin */
-  }
-
-  /* Hero: Essential for mobile readability */
-  .hero h1 {
-    font-size: 2.2rem;
-    line-height: 1.2;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  /* About: Stack the image and text */
-  #about {
-    padding: 40px 20px;
-  }
-
-  .about-container {
-    flex-direction: column; /* Image moves below text */
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    position: fixed; 
+    top: 60px; /* Adjust this to match your navbar height */
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 20px 0;
+    margin: 0;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    z-index: 1000;
     text-align: center;
   }
 
-  .about-text p {
-    max-width: 100%;
+  /* 5. The ACTIVE state (This is what JS toggles) */
+  .nav-links.active {
+    display: flex !important;
   }
 
-  /* Products: Grid behavior */
+  .nav-links li {
+    margin: 15px 0; /* Vertical spacing for mobile links */
+  }
+
+  /* 6. Section Fixes (Hero, About, Products) */
+  .hero h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .about-container {
+    flex-direction: column; /* Stack image and text */
+    text-align: center;
+    padding: 0 20px;
+  }
+
   .product-grid-layout {
-    grid-template-columns: 1fr; /* Single column for easy scrolling */
-    padding: 10px;
+    grid-template-columns: 1fr; /* One product per row on phones */
   }
 
-  /* Footer: Stack navigation links */
   footer ul {
     flex-direction: column;
     gap: 15px;
   }
 }
 
-/* 3. Small Mobile Devices (under 480px) */
-@media screen and (max-width: 480px) {
-  .logo {
-    font-size: 24px;
-  }
-
-  .hero h1 {
-    font-size: 1.8rem;
-  }
-
-  .contact-container {
-    padding: 20px;
-  }
-
-  .nav-right {
-    display: flex;
-    gap: 10px;
-  }
-}
-/* Styling the hamburger lines */
-.menu-toggle {
-    display: none; /* Hidden by default */
-    cursor: pointer;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.bar {
-    width: 25px;
-    height: 3px;
-    background-color: black;
-    transition: 0.3s;
-}
-
-/* Mobile Media Query Update */
-@media screen and (max-width: 768px) {
-    .menu-toggle {
-        display: flex; /* Show hamburger on mobile */
-    }
-
-    .nav-links {
-        display: none; /* Hide links initially on mobile */
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: white;
-        text-align: center;
-        padding: 20px 0;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    }
-
-    /* This class will be added by JavaScript when you click */
-    .nav-links.active {
-        display: flex;
-    }
-    
-    .nav-right {
-        display: none; /* Hide login/signup on mobile to save space */
-    }
-}
