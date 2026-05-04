@@ -1,73 +1,79 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Mobile Menu Toggle Logic
-    const menuBtn = document.getElementById('mobile-menu');
-    const navList = document.getElementById('nav-list');
 
-    if (menuBtn && navList) {
-        menuBtn.onclick = () => {
-            navList.classList.toggle('active');
-        };
+// ===============================
+// MOBILE NAVBAR TOGGLE
+// ===============================
+const mobileMenu = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector(".nav-links");
 
-        // Close menu when a link is clicked
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navList.classList.remove('active');
-            });
-        });
+mobileMenu.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+  mobileMenu.classList.toggle("active");
+});
+
+// Close menu when a link is clicked (better UX on mobile)
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("active");
+    mobileMenu.classList.remove("active");
+  });
+});
+
+
+// ===============================
+// LOGIN / CONTACT FORM HANDLING
+// ===============================
+const form = document.getElementById("loginForm");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const email = document.getElementById("user-email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  // Basic validation
+  if (!email || !password || !message) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  if (password.length < 6) {
+    alert("Password must be at least 6 characters.");
+    return;
+  }
+
+  alert("Form submitted successfully!");
+  form.reset();
+});
+
+
+// ===============================
+// ADD TO CART FUNCTIONALITY
+// ===============================
+const productButtons = document.querySelectorAll(".products-images button");
+
+productButtons.forEach(button => {
+  button.addEventListener("click", (e) => {
+    const productCard = e.target.closest(".products-images");
+    const productName = productCard.querySelector("h3").textContent;
+
+    alert(`${productName} added to cart`);
+  });
+});
+
+
+// ===============================
+// OPTIONAL: SMOOTH SCROLL FIX (enhanced UX)
+// ===============================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth"
+      });
     }
-
-    // 2. Smooth Scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // 3. Navbar Background Change on Scroll
-    window.addEventListener('scroll', function() {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) {
-            navbar.style.background = '#ffffff';
-            navbar.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
-        } else {
-            // Optional: Reset if scrolled back to top
-            navbar.style.boxShadow = 'none';
-        }
-    });
-
-    // 4. Add to Cart Logic
-    const cartButtons = document.querySelectorAll('.products-images button'); // Matches your CSS class
-    cartButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const productName = button.parentElement.querySelector('h3').innerText;
-            alert(productName + " has been added to your cart!");
-            
-            const originalText = button.innerText;
-            button.innerText = "Added ✓";
-            button.style.background = "palevioletred";
-            button.style.color = "white";
-
-            setTimeout(() => {
-                button.innerText = originalText;
-                button.style.background = "white";
-                button.style.color = "black";
-            }, 2000);
-        });
-    });
-
-    // 5. Form Submission Mockup
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert("Thank you! Your message has been sent to Veloura Scents.");
-            loginForm.reset();
-        });
-    }
+  });
 });
