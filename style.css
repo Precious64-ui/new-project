@@ -4,19 +4,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  
-  /* --- STICKY CODE START --- */
-  position: fixed;      /* Fixes it to the screen */
-  top: 0;               /* Pins it to the very top */
-  width: 100%;          /* Ensures it spans the whole width */
-  z-index: 1000;        /* Keeps it on top of all other elements */
-  background: white;    /* Ensures text doesn't bleed through from behind */
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Adds a nice depth effect */
-  box-sizing: border-box; /* Prevents padding from pushing it off-screen */
-  /* --- STICKY CODE END --- */
-  
-  color: rgb(0, 0, 0);
+  padding: 0 2rem; /* Reduced padding for mobile safety */
+  height: 70px;    /* Fixed height prevents the "floating" button look */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2000;   /* Higher than hero and menu */
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-sizing: border-box;
 }
 
 /* Remove bullets and align links */
@@ -41,8 +37,9 @@
     color: gold;
 }
 
-.logo{
-    font-size: 30px;
+.logo {
+  font-size: 24px; /* Slightly smaller for mobile */
+  white-space: nowrap; 
 }
 
 .btn-login, .btn-signup {
@@ -105,18 +102,17 @@
   transform: scale(1.05);
 }
 
-#about{
-    padding: 80px;
-    background: pink;
-    animation: fadeInLeft 1.5s ease-out;
-    overflow: hidden;
+#about {
+  padding: 60px 20px; /* Reduced from 80px to stop it from being too long */
+  background: palevioletred; /* A softer pink looks more professional */
 }
 
 .about-container {
   display: flex;
+  flex-direction: column; /* Stack image and text on mobile */
   align-items: center;
-  justify-content: space-between;
-  gap: 50px;
+  text-align: center;
+  gap: 30px;
 }
 
 .about-text h2 {
@@ -395,54 +391,53 @@ footer small {
   to { transform: scale(1); }
 }
 
-/* --- CORRECTED MOBILE MEDIA QUERY --- */
 @media screen and (max-width: 768px) {
-    /* 1. Hide the menu by default */
+    /* HIDE LOGIN/SIGNUP ON MOBILE - These should go inside your menu list instead */
+    .btn-login, .btn-signup {
+        display: none !important; 
+    }
+
     .nav-links {
         display: none !important; 
         flex-direction: column;
         position: fixed;
-        top: 60px;
+        top: 70px; /* Matches navbar height */
         left: 0;
         width: 100%;
         height: 100vh; 
-        background-color: rgba(0, 0, 0, 0.9); 
+        background-color: rgba(0, 0, 0, 0.95); 
         z-index: 1000;
         padding-top: 50px;
     }
 
-    /* 2. Show the menu ONLY when it has the .active class */
     .nav-links.active {
         display: flex !important;
     }
 
-    /* 3. Style the links centered */
     .nav-links li {
-        margin: 20px 0;
+        margin: 15px 0;
         text-align: center;
-        margin-left: 0; /* Resets the desktop margin-left */
+        margin-left: 0;
     }
 
-    /* 4. Ensure the toggle icon is visible on mobile */
     .menu-toggle {
         display: flex !important;
         flex-direction: column;
         gap: 5px;
-        z-index: 2001 !important;
-        position: relative !important;
-        padding: 10px;
         cursor: pointer;
     }
-
-    /* 5. Tighten footer for mobile */
+    
+    /* Ensure footer links don't overlap */
     footer ul {
-        gap: 15px;
+        gap: 10px;
         flex-direction: row; 
     }
-} /* <--- THIS BRACKET WAS MISSING OR IN THE WRONG PLACE --- */
+}
 
-/* 6. Prevent horizontal scrolling (This stays outside media query to be safe) */
+/* Final cleanup for horizontal behavior */
 body, html {
     overflow-x: hidden !important;
     width: 100%;
+    margin: 0;
+    padding: 0;
 }
